@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivial Pursuit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        {% for player in players %}
+        <div class="col text-center">
+            <div class="card" style="border: 3px solid var(--player-color-{{ loop.index }});">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: var(--player-color-{{ loop.index }});">{{ player.name }}</h5>
+                    <p class="card-text">Score : {{ player.score }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    <div class="game-board">
+        <!-- Le camembert (plateau de jeu) -->
+        <div class="camembert">
+            <!-- Exemple d'une "section" du camembert -->
+            {% for player in players %}
+                <div class="camembert-section player-{{ loop.index }}">
+                    <p>{{ player.name }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Partie affichant les informations -->
+        <div class="info-panel">
+            <h2>Joueur actuel : {{ current_player['name'] }}</h2>
+            <ul>
+                {% for player in players %}
+                    <li style="color: var(--player-color-{{ loop.index }});">
+                        {{ player.name }} : {{ player.score }} points
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

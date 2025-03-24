@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz - Question</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        {% for player in players %}
+        <div class="col text-center">
+            <div class="card" style="border: 3px solid var(--player-color-{{ loop.index }});">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: var(--player-color-{{ loop.index }});">{{ player.name }}</h5>
+                    <p class="card-text">Score : {{ player.score }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    <h1>Catégorie : {{ question['category'] }}</h1>
+    <h2>Joueur actuel : {{ current_player['name'] }}</h2>
+
+    <form method="POST" action="{{ url_for('answer') }}">
+        <h3>{{ question['question'] }}</h3>
+        {% for option in question['options'] %}
+            <label>
+                <input type="radio" name="answer" value="{{ option }}" required> {{ option }}
+            </label><br>
+        {% endfor %}
+        <input type="hidden" name="correct_answer" value="{{ question['answer'] }}">
+        <button type="submit">Valider</button>
+    </form>
+
+    <h3>Scores actuels :</h3>
+    <ul>
+        {% for player in players %}
+            <li>{{ player['name'] }} : {{ player['score'] }} points</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

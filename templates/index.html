@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivial Pursuit</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS (Lien vers votre propre CSS personnalisé) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h1 class="mb-4">Trivial Pursuit</h1>
+
+        <!-- Camembert graphique -->
+        <div class="camembert-container mx-auto">
+            <div class="camembert">
+                <!-- Sections du camembert -->
+                {% for player in players %}
+                    <div class="camembert-section player-{{ loop.index }}">
+                        <p>{{ player.name }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Scoreboard -->
+        <div class="mt-5">
+            <h3>Joueur actuel :
+                <span style="color: var(--player-color-{{ current_player_index + 1 }});">
+                    {{ current_player['name'] }}
+                </span>
+            </h3>
+            <ul class="list-group mt-3">
+                {% for player in players %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span style="color: var(--player-color-{{ loop.index }}); font-weight: bold;">
+                            {{ player.name }}
+                        </span>
+                        <span class="badge bg-primary rounded-pill">{{ player.score }} points</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        // Exemple pour mettre en surbrillance le joueur actuel.
+        document.addEventListener('DOMContentLoaded', function () {
+            var currentPlayerIndex = {{ current_player_index }};
+            var currentSection = document.querySelector('.player-' + (currentPlayerIndex + 1));
+
+            if (currentSection) {
+                setInterval(function () {
+                    currentSection.classList.toggle('highlight');
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

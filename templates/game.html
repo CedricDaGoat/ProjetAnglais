@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jeu du Pendu</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/rope.png') }}" type="image/png">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .letter-btn {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            font-weight: bold;
+        }
+        .word-display {
+            font-size: 2rem;
+            letter-spacing: 10px;
+            margin: 20px 0;
+        }
+        .used-letter {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .hangman-image {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center mt-4">
+        <h1 class="mb-4">Le Jeu du Pendu</h1>
+
+        <!-- Affichage du score -->
+        <div class="mb-3">
+            <h3>Score: <span class="badge badge-primary">{{ session.get('score', 0) }}</span></h3>
+        </div>
+
+        <!-- Image du pendu selon le nombre d'essais restants -->
+        <div class="mb-3">
+            <img src="{{ url_for('static', filename='hangman_' + tries|string + '.png') }}" alt="Hangman" class="hangman-image">
+            <p class="mt-2">Essais restants: <strong>{{ tries }}</strong></p>
+        </div>
+
+        <!-- Le mot à deviner avec les espaces -->
+        <div class="word-display">
+            {% for letter in word %}
+                <span>{{ letter }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- Clavier de lettres -->
+        <div class="mt-4">
+            {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+                {% if letter in session.get('used_letters', []) %}
+                    <button class="btn btn-outline-secondary letter-btn used-letter" disabled>{{ letter }}</button>
+                {% else %}
+                    <a href="{{ url_for('add_char', char=letter) }}" class="btn btn-outline-primary letter-btn">{{ letter }}</a>
+                {% endif %}
+                {% if loop.index is divisibleby 7 %}
+                    <br>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Lettres déjà utilisées -->
+        <div class="mt-4">
+            <h5>Lettres utilisées:</h5>
+            <p>
+                {% for letter in session.get('used_letters', []) %}
+                    <span class="badge {% if letter in session.get('secret_word', '') %}badge-success{% else %}badge-danger{% endif %} p-2 m-1">{{ letter }}</span>
+                {% endfor %}
+            </p>
+        </div>
+
+        <!-- Bouton pour retourner à l'accueil -->
+        <div class="mt-4">
+            <a href="/" class="btn btn-secondary">Accueil</a>
+            <a href="/new_game" class="btn btn-warning ml-2">Nouvelle partie</a>
+        </div>
+    </div>
+</body>
+</html>

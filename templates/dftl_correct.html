@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}Correct! - DFTL{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row mt-3">
+        <div class="col">
+            <a href="/" class="btn btn-sm btn-outline-secondary">
+                <i class="fas fa-home"></i> Accueil
+            </a>
+        </div>
+        <div class="col text-end">
+            <span class="badge bg-primary">Score: {{ score }}</span>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow border-success">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Bravo! Réponse correcte</h5>
+                </div>
+                <div class="card-body">
+                    <h4>{{ song.artist }} - {{ song.title }}</h4>
+                    <p class="lyrics">{{ song.lyrics }} <strong>{{ song.answer }}</strong></p>
+                    
+                    <div class="mt-4 d-flex justify-content-between">
+                        <a href="/" class="btn btn-outline-primary">Menu</a>
+                        <a href="/dftl_play" class="btn btn-primary">Chanson suivante</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

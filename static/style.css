@@ -1,0 +1,129 @@
+/* Variables pour les couleurs des joueurs */
+:root {
+    --player-color-1: #e63946; /* Rouge */
+    --player-color-2: #457b9d; /* Bleu */
+    --player-color-3: #2a9d8f; /* Vert */
+    --player-color-4: #f4a261; /* Orange */
+    --player-color-5: #9d4edd; /* Violet */
+    --player-color-6: #e5989b; /* Rose */
+}
+
+/* Style général */
+body {
+    cursor: url('https://cdn0.iconfinder.com/data/icons/game-ui-casual-chunky/533/IconsByAndreaFryer_GameUI_Chunky_Pointer-512.png'), auto;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Style du camembert */
+.camembert-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+}
+
+.camembert {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #eee;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.camembert-section {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    transform-origin: bottom right;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease;
+}
+
+/* Positions des sections du camembert */
+.player-1 {
+    background-color: var(--player-color-1);
+    transform: rotate(0deg) skewY(-30deg);
+}
+.player-2 {
+    background-color: var(--player-color-2);
+    transform: rotate(60deg) skewY(-30deg);
+}
+.player-3 {
+    background-color: var(--player-color-3);
+    transform: rotate(120deg) skewY(-30deg);
+}
+.player-4 {
+    background-color: var(--player-color-4);
+    transform: rotate(180deg) skewY(-30deg);
+}
+.player-5 {
+    background-color: var(--player-color-5);
+    transform: rotate(240deg) skewY(-30deg);
+}
+.player-6 {
+    background-color: var(--player-color-6);
+    transform: rotate(300deg) skewY(-30deg);
+}
+
+/* Animation pour le joueur actif */
+.highlight {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8);
+    z-index: 10;
+}
+
+/* Style des conteneurs */
+.question-container, .categories-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Style des catégories */
+.list-group-item {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.list-group-item:hover {
+    transform: translateX(5px);
+}
+
+/* Style des questions */
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* Style des formulaires */
+.form-check {
+    margin: 10px 0;
+    text-align: left;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .camembert-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .container-fluid {
+        padding: 10px;
+    }
+}
