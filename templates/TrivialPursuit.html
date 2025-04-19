@@ -4,118 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trivial Pursuit</title>
-
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Votre CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container-fluid">
-        <!-- En-tête avec le titre -->
         <div class="row text-center mt-3">
             <h1>Trivial Pursuit</h1>
         </div>
 
-        <!-- Structure principale en 3 colonnes -->
         <div class="row">
-            <!-- Colonne de gauche avec le camembert -->
+            <!-- Colonne des scores -->
             <div class="col-md-4">
-                <div class="camembert-container">
-                    <div class="camembert">
-                        {% for joueur in range(nb_joueurs) %}
-                            <div class="camembert-section player-{{ joueur + 1 }}">
-                                <p>J{{ joueur + 1 }}</p>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <!-- Scores sous le camembert -->
                 <div class="scores-container mt-3">
+                    <h4 class="text-center mb-3">
+                        Score maximum : <span class="badge bg-warning text-dark">{{ max_score }}</span>
+                    </h4>
                     <ul class="list-group">
                         {% for joueur in range(nb_joueurs) %}
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span style="color: var(--player-color-{{ joueur + 1 }}); font-weight: bold;">
-                                    Joueur {{ joueur + 1 }}
-                                </span>
-                                <span class="badge bg-primary rounded-pill">{{ scores[joueur] }} points</span>
-                            </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span style="color: var(--player-color-{{ joueur + 1 }}); font-weight: bold;">
+                                Joueur {{ joueur + 1 }}
+                            </span>
+                            <span class="badge bg-primary rounded-pill">{{ scores[joueur] }} points</span>
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>
             </div>
 
-            <!-- Colonne centrale avec la question -->
+            <!-- Colonne centrale -->
             <div class="col-md-4">
                 <div class="question-container">
-                    <h3>Tour du Joueur {{ joueur_actuel }}</h3>
+                    <h3>Votre tour</h3>
                     {% if question %}
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                Question de {{ question.category }}
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">{{ question.question }}</p>
-                                <form method="post" action="{{ url_for('check_answer') }}">
-                                    {% for reponse in question.reponses %}
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="reponse" value="{{ reponse }}" id="reponse{{ loop.index }}">
-                                            <label class="form-check-label" for="reponse{{ loop.index }}">
-                                                {{ reponse }}
-                                            </label>
-                                        </div>
-                                    {% endfor %}
-                                    <button type="submit" class="btn btn-primary mt-3">Valider</button>
-                                </form>
-                            </div>
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Question de {{ question.category }}
                         </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ question.question }}</p>
+                            <form method="post" action="{{ url_for('check_answer') }}">
+                                {% for reponse in question.reponses %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="reponse" value="{{ reponse }}" id="reponse{{ loop.index }}">
+                                    <label class="form-check-label" for="reponse{{ loop.index }}">
+                                        {{ reponse }}
+                                    </label>
+                                </div>
+                                {% endfor %}
+                                <button type="submit" class="btn btn-primary mt-3">Valider</button>
+                            </form>
+                        </div>
+                    </div>
                     {% endif %}
                 </div>
             </div>
 
-            <!-- Colonne de droite avec les catégories -->
+            <!-- Colonne des catégories -->
             <div class="col-md-4">
                 <div class="categories-container">
                     <h3>Catégories</h3>
                     <div class="list-group">
                         {% for categorie in categories %}
-                            <button class="list-group-item list-group-item-action">
-                                {{ categorie }}
-                            </button>
+                        <button class="list-group-item list-group-item-action">
+                            {{ categorie }}
+                        </button>
                         {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Boutons de contrôle en bas -->
+        <!-- Formulaire de démarrage et reset -->
         <div class="row text-center mt-4">
             <div class="col">
-                <form method="post" class="d-inline-block">
-                    <button type="submit" class="btn btn-danger" name="restart">Nouvelle Partie</button>
-                    <button type="submit" class="btn btn-success" name="start">Commencer</button>
+                <form method="post" action="{{ url_for('index') }}" id="start-form">
+                    {% if not partie_commencee %}
+                    <button type="submit" class="btn btn-success me-2" name="start">Commencer la partie</button>
+                    {% endif %}
+                    <button type="submit" class="btn btn-danger me-2" name="restart">Nouvelle Partie</button>
                 </form>
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap JS -->
+    <div class="d-flex justify-content-center mt-3">
+        <a href="/" class="btn btn-secondary">Accueil</a>
+    </div>  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Animation du joueur actuel -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var currentPlayer = {{ joueur_actuel }};
-            var currentSection = document.querySelector('.player-' + currentPlayer);
-
-            if (currentSection) {
-                setInterval(function () {
-                    currentSection.classList.toggle('highlight');
-                }, 500);
-            }
-        });
-    </script>
 </body>
 </html>
