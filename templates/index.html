@@ -8,19 +8,19 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS (Lien vers votre propre CSS personnalisé) -->
+    <!-- Custom CSS (Link to your custom CSS) -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container text-center mt-5">
         <h1 class="mb-4">Trivial Pursuit</h1>
 
-        <!-- Camembert graphique -->
-        <div class="camembert-container mx-auto">
-            <div class="camembert">
-                <!-- Sections du camembert -->
+        <!-- Pie chart graphic -->
+        <div class="pie-chart-container mx-auto">
+            <div class="pie-chart">
+                <!-- Pie chart sections -->
                 {% for player in players %}
-                    <div class="camembert-section player-{{ loop.index }}">
+                    <div class="pie-chart-section player-{{ loop.index }}">
                         <p>{{ player.name }}</p>
                     </div>
                 {% endfor %}
@@ -29,7 +29,7 @@
 
         <!-- Scoreboard -->
         <div class="mt-5">
-            <h3>Joueur actuel :
+            <h3>Current player:
                 <span style="color: var(--player-color-{{ current_player_index + 1 }});">
                     {{ current_player['name'] }}
                 </span>
@@ -52,7 +52,7 @@
 
     <!-- Custom JS -->
     <script>
-        // Exemple pour mettre en surbrillance le joueur actuel.
+        // Example to highlight the current player.
         document.addEventListener('DOMContentLoaded', function () {
             var currentPlayerIndex = {{ current_player_index }};
             var currentSection = document.querySelector('.player-' + (currentPlayerIndex + 1));

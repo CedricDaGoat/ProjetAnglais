@@ -5,7 +5,7 @@
     <div class="row mt-3">
         <div class="col">
             <a href="{{ url_for('index') }}" class="btn btn-sm btn-outline-secondary">
-                <i class="fas fa-home"></i> Accueil
+                <i class="fas fa-home"></i> Home
             </a>
         </div>
         <div class="col text-end">
@@ -17,15 +17,15 @@
         <div class="col-md-8 offset-md-2">
             <div class="card shadow border-danger">
                 <div class="card-header bg-danger text-white">
-                    <h5 class="mb-0">Oups! Réponse incorrecte</h5>
+                    <h5 class="mb-0">Oops! Incorrect answer</h5>
                 </div>
                 <div class="card-body">
                     <h4>{{ song.artist }} - {{ song.title }}</h4>
                     <p class="lyrics">{{ song.lyrics }} <span class="text-danger"><del>{{ user_answer }}</del></span> <span class="text-success"><strong>{{ song.answer }}</strong></span></p>
                     
                     <div class="mt-4 d-flex justify-content-between">
-                        <a href="{{ url_for('dftl') }}" class="btn btn-outline-primary">Menu DFTL</a>
-                        <a href="{{ url_for('dftl_play') }}" class="btn btn-primary">Chanson suivante</a>
+                        <a href="{{ url_for('dftl') }}" class="btn btn-outline-primary">DFTL Menu</a>
+                        <a href="{{ url_for('dftl_play') }}" class="btn btn-primary">Next song</a>
                     </div>
                 </div>
             </div>

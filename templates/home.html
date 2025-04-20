@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,63 +76,62 @@
             align-items: center;
             height: 200px;
             background: linear-gradient(45deg, #4c6ef5, #15aabf);
-            overflow: hidden; /* Empêche le débordement */
+            overflow: hidden;
         }
 
         .game-img {
-            width: auto;       /* Largeur automatique */
-            height: 80%;      /* Hauteur à 80% du conteneur */
-            object-fit: contain; /* Garde les proportions */
-            max-width: 80%;    /* Largeur maximale */
+            width: auto;
+            height: 80%;
+            object-fit: contain;
+            max-width: 80%;
             vertical-align: middle;
-            transition: transform 0.3s ease; /* Animation au survol */
+            transition: transform 0.3s ease;
         }
 
         .game-card:hover .game-img {
-            transform: scale(1.1); /* Léger zoom au survol */
+            transform: scale(1.1);
         }
 
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="main-title">Bienvenue dans notre Collection de Jeux</h1>
+        <h1 class="main-title">Welcome to Our Game Collection</h1>
         
         <div class="row g-4">
-            <!-- Carte du Pendu -->
+            <!-- Hangman Card -->
              <div class="col-md-6 col-lg-3">
                 <div class="game-card card">
                     <div class="icon-container">
-                        <img src="{{ url_for('static', filename='img/rope1.png') }}" alt="Pendu" class="game-img">
+                        <img src="{{ url_for('static', filename='img/rope1.png') }}" alt="Hangman" class="game-img">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Le Pendu</h5>
-                        <p class="card-text">Devinez le mot mystère avant que le pendu ne soit complet ! Un jeu classique de vocabulaire.</p>
+                        <h5 class="card-title">Hangman</h5>
+                        <p class="card-text">Guess the mystery word before the hangman is completed! A classic vocabulary game.</p>
                         <a href="/game" class="btn btn-play btn-primary">
-                            <i class="fas fa-play me-2"></i>Jouer
+                            <i class="fas fa-play me-2"></i>Play
                         </a>
                     </div>
                 </div>
             </div>
 
-
-            <!-- Carte des Définitions -->
+            <!-- Definitions Card -->
             <div class="col-md-6 col-lg-3">
                 <div class="game-card card">
                     <div class="icon-container">
                         <i class="fas fa-book-open card-icon"></i>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Définitions</h5>
-                        <p class="card-text">Explorez le dictionnaire et découvrez les définitions de tous les mots que vous cherchez.</p>
+                        <h5 class="card-title">Definitions</h5>
+                        <p class="card-text">Explore the dictionary and discover the definitions of all the words you search for.</p>
                         <a href="/definition" class="btn btn-play btn-primary">
-                            <i class="fas fa-search me-2"></i>Chercher
+                            <i class="fas fa-search me-2"></i>Search
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Carte du Trivial -->
+            <!-- Trivial Card -->
             <div class="col-md-6 col-lg-3">
                 <div class="game-card card">
                     <div class="icon-container">
@@ -140,15 +139,15 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Trivial</h5>
-                        <p class="card-text">Testez vos connaissances avec notre quiz varié et divertissant.</p>
+                        <p class="card-text">Test your knowledge with our varied and fun quiz.</p>
                         <a href="/trivial" class="btn btn-play btn-primary">
-                            <i class="fas fa-gamepad me-2"></i>Jouer
+                            <i class="fas fa-gamepad me-2"></i>Play
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Carte de Don't Forget The Lyrics -->
+            <!-- Don't Forget The Lyrics Card -->
             <div class="col-md-6 col-lg-3">
                 <div class="game-card card">
                     <div class="icon-container">
@@ -156,9 +155,9 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Don't Forget The Lyrics</h5>
-                        <p class="card-text">Complétez les paroles de vos chansons préférées dans ce jeu musical captivant.</p>
+                        <p class="card-text">Complete the lyrics of your favorite songs in this captivating music game.</p>
                         <a href="/dftl" class="btn btn-play btn-primary">
-                            <i class="fas fa-microphone me-2"></i>Jouer
+                            <i class="fas fa-microphone me-2"></i>Play
                         </a>
                     </div>
                 </div>

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Partie gagnée</title>
+    <title>Game Won</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body class="text-center">
     <div class="container mt-5">
-        <h1 class="text-success mb-4">Félicitations !</h1>
-        <p class="lead">Vous avez trouvé le mot : <strong>{{ session.get('secret_word', 'inconnu') }}</strong></p>
-        <p>Votre score actuel : <span class="badge badge-primary">{{ session.get('score', 0) }}</span></p>
+        <h1 class="text-success mb-4">Congratulations!</h1>
+        <p class="lead">You guessed the word: <strong>{{ session.get('secret_word', 'unknown') }}</strong></p>
+        <p>Your current score: <span class="badge badge-primary">{{ session.get('score', 0) }}</span></p>
         
         <div class="mt-4">
-            <a href="/new_game" class="btn btn-warning ml-2">Nouvelle partie</a>
-            <a href="/" class="btn btn-outline-secondary">Accueil</a>
+            <a href="/new_game" class="btn btn-warning ml-2">New Game</a>
+            <a href="/" class="btn btn-outline-secondary">Home</a>
         </div>
     </div>
 </body>

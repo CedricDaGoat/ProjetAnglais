@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Jeu du Pendu</title>
+    <title>Hangman Game</title>
     <link rel="icon" href="{{ url_for('static', filename='img/rope.png') }}" type="image/png">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -29,27 +29,27 @@
 </head>
 <body>
     <div class="container text-center mt-4">
-        <h1 class="mb-4">Le Jeu du Pendu</h1>
+        <h1 class="mb-4">Hangman Game</h1>
 
-        <!-- Affichage du score -->
+        <!-- Score display -->
         <div class="mb-3">
             <h3>Score: <span class="badge badge-primary">{{ session.get('score', 0) }}</span></h3>
         </div>
 
-        <!-- Image du pendu selon le nombre d'essais restants -->
+        <!-- Hangman image based on remaining tries -->
         <div class="mb-3">
             <img src="{{ url_for('static', filename='hangman_' + tries|string + '.png') }}" alt="Hangman" class="hangman-image">
-            <p class="mt-2">Essais restants: <strong>{{ tries }}</strong></p>
+            <p class="mt-2">Remaining attempts: <strong>{{ tries }}</strong></p>
         </div>
 
-        <!-- Le mot à deviner avec les espaces -->
+        <!-- Word to guess with spaces -->
         <div class="word-display">
             {% for letter in word %}
                 <span>{{ letter }}</span>
             {% endfor %}
         </div>
 
-        <!-- Clavier de lettres -->
+        <!-- On-screen keyboard -->
         <div class="mt-4">
             {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
                 {% if letter in session.get('used_letters', []) %}
@@ -63,9 +63,9 @@
             {% endfor %}
         </div>
 
-        <!-- Lettres déjà utilisées -->
+        <!-- Already used letters -->
         <div class="mt-4">
-            <h5>Lettres utilisées:</h5>
+            <h5>Used letters:</h5>
             <p>
                 {% for letter in session.get('used_letters', []) %}
                     <span class="badge {% if letter in session.get('secret_word', '') %}badge-success{% else %}badge-danger{% endif %} p-2 m-1">{{ letter }}</span>
@@ -73,10 +73,10 @@
             </p>
         </div>
 
-        <!-- Bouton pour retourner à l'accueil -->
+        <!-- Home and new game buttons -->
         <div class="mt-4">
-            <a href="/" class="btn btn-secondary">Accueil</a>
-            <a href="/new_game" class="btn btn-warning ml-2">Nouvelle partie</a>
+            <a href="/" class="btn btn-secondary">Home</a>
+            <a href="/new_game" class="btn btn-warning ml-2">New Game</a>
         </div>
     </div>
 </body>

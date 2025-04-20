@@ -50,7 +50,8 @@ def init_game_state(nbrjoueur=1):
         'questions': load_questions(),
         'questions_posees': [],
         'question_actuelle': None,
-        'partie_commencee': False
+        'partie_commencee': False,
+        'question_counter': 1
     }
 
     # Initialiser le score maximum si nécessaire
@@ -76,13 +77,18 @@ def definition():
 def index():
     if 'game_state' not in session:
         session['game_state'] = init_game_state()
-
+        
     game_state = session['game_state']
+    
+    # Initialiser le compteur de questions si ce n'est pas déjà fait
+    if 'question_counter' not in session:
+        session['question_counter'] = 1  # Commencer à 1
 
     if request.method == 'POST':
         # Bouton Nouvelle Partie
         if 'restart' in request.form:
             session['game_state'] = init_game_state(1)
+            session['question_counter'] = 1  # Réinitialiser le compteur de questions
             return redirect(url_for('index'))
 
         # Bouton Commencer la partie
@@ -90,6 +96,7 @@ def index():
             game_state = init_game_state()
             game_state['partie_commencee'] = True
             session['game_state'] = game_state
+            session['question_counter'] = 1  # Réinitialiser le compteur de questions
             return redirect(url_for('question'))
 
     return render_template('TrivialPursuit.html',
@@ -98,7 +105,9 @@ def index():
                            joueur_actuel=game_state['joueur_actuel'],
                            categories=CATEGORIES,
                            partie_commencee=game_state['partie_commencee'],
-                           max_score=session.get('max_score', 0))
+                           max_score=session.get('max_score', 0),
+                           question_counter=session['question_counter'])
+
 
 
 @app.route('/question', methods=['GET'])
@@ -134,7 +143,8 @@ def question():
                                'question': question['question'],
                                'reponses': reponses
                            },
-                           max_score=session.get('max_score', 0))
+                           max_score=session.get('max_score', 0),
+                           question_counter=session['question_counter'])
 
 
 @app.route('/check_answer', methods=['POST'])
@@ -152,7 +162,7 @@ def check_answer():
             nouveau_max = game_state['scores'][idx]
             if nouveau_max > session.get('max_score', 0):
                 session['max_score'] = nouveau_max
-
+        session['question_counter'] += 1
         session['game_state'] = game_state
 
     return redirect(url_for('question'))

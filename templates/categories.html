@@ -14,7 +14,7 @@
             <div class="card" style="border: 3px solid var(--player-color-{{ loop.index }});">
                 <div class="card-body">
                     <h5 class="card-title" style="color: var(--player-color-{{ loop.index }});">{{ player.name }}</h5>
-                    <p class="card-text">Score : {{ player.score }}</p>
+                    <p class="card-text">Score: {{ player.score }}</p>
                 </div>
             </div>
         </div>
@@ -22,9 +22,9 @@
     </div>
 </div>
     <div class="game-board">
-        <!-- Le camembert (plateau de jeu) -->
+        <!-- The pie (game board) -->
         <div class="camembert">
-            <!-- Exemple d'une "section" du camembert -->
+            <!-- Example of a "section" of the pie -->
             {% for player in players %}
                 <div class="camembert-section player-{{ loop.index }}">
                     <p>{{ player.name }}</p>
@@ -32,13 +32,13 @@
             {% endfor %}
         </div>
 
-        <!-- Partie affichant les informations -->
+        <!-- Section displaying game information -->
         <div class="info-panel">
-            <h2>Joueur actuel : {{ current_player['name'] }}</h2>
+            <h2>Current player: {{ current_player['name'] }}</h2>
             <ul>
                 {% for player in players %}
                     <li style="color: var(--player-color-{{ loop.index }});">
-                        {{ player.name }} : {{ player.score }} points
+                        {{ player.name }}: {{ player.score }} points
                     </li>
                 {% endfor %}
             </ul>
