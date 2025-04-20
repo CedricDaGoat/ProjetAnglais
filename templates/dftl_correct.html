@@ -24,8 +24,8 @@
                     <p class="lyrics">{{ song.lyrics }} <strong>{{ song.answer }}</strong></p>
                     
                     <div class="mt-4 d-flex justify-content-between">
-                        <a href="/" class="btn btn-outline-primary">Menu</a>
-                        <a href="/dftl_play" class="btn btn-primary">Next song</a>
+                        <a href="{{ url_for('dftl') }}" class="btn btn-outline-primary">DFTL Menu</a>
+                        <a href="{{ url_for('dftl_play') }}" class="btn btn-primary">Next song</a>
                     </div>
                 </div>
             </div>

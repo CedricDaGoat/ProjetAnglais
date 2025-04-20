@@ -21,7 +21,6 @@ def load_questions():
     with open('QuizData.json', 'r', encoding='utf-8') as file:
         return json.load(file)
 
-
 def init_game_state(nbrjoueur=1):
     # Choix aléatoire du mot pour Hangman (réutilisé ailleurs)
     word_set = ["PYTHON", "JAVASCRIPT", "HANGMAN", "PROGRAMMING", "DEVELOPER",
@@ -50,7 +49,8 @@ def init_game_state(nbrjoueur=1):
         'questions': load_questions(),
         'questions_posees': [],
         'question_actuelle': None,
-        'partie_commencee': False
+        'partie_commencee': False,
+        'question_counter': 1
     }
 
     # Initialiser le score maximum si nécessaire
@@ -76,13 +76,18 @@ def definition():
 def index():
     if 'game_state' not in session:
         session['game_state'] = init_game_state()
-
+        
     game_state = session['game_state']
+    
+    # Initialiser le compteur de questions si ce n'est pas déjà fait
+    if 'question_counter' not in session:
+        session['question_counter'] = 1  # Commencer à 1
 
     if request.method == 'POST':
         # Bouton Nouvelle Partie
         if 'restart' in request.form:
             session['game_state'] = init_game_state(1)
+            session['question_counter'] = 1  # Réinitialiser le compteur de questions
             return redirect(url_for('index'))
 
         # Bouton Commencer la partie
@@ -90,6 +95,7 @@ def index():
             game_state = init_game_state()
             game_state['partie_commencee'] = True
             session['game_state'] = game_state
+            session['question_counter'] = 1  # Réinitialiser le compteur de questions
             return redirect(url_for('question'))
 
     return render_template('TrivialPursuit.html',
@@ -98,7 +104,9 @@ def index():
                            joueur_actuel=game_state['joueur_actuel'],
                            categories=CATEGORIES,
                            partie_commencee=game_state['partie_commencee'],
-                           max_score=session.get('max_score', 0))
+                           max_score=session.get('max_score', 0),
+                           question_counter=session['question_counter'])
+
 
 
 @app.route('/question', methods=['GET'])
@@ -134,7 +142,8 @@ def question():
                                'question': question['question'],
                                'reponses': reponses
                            },
-                           max_score=session.get('max_score', 0))
+                           max_score=session.get('max_score', 0),
+                           question_counter=session['question_counter'])
 
 
 @app.route('/check_answer', methods=['POST'])
@@ -152,7 +161,7 @@ def check_answer():
             nouveau_max = game_state['scores'][idx]
             if nouveau_max > session.get('max_score', 0):
                 session['max_score'] = nouveau_max
-
+        session['question_counter'] += 1
         session['game_state'] = game_state
 
     return redirect(url_for('question'))
@@ -189,129 +198,6 @@ def set_response_headers(response):
 @app.route('/')
 def hello_world():
     return render_template('home.html')
-
-@app.route('/game')
-def game():
-    if 'secret_word' not in session or 'to_display' not in session or 'tries' not in session:
-        init_game_state()
-
-    return render_template('game.html',
-                           word=session['to_display'],
-                           tries=session['tries'],
-                           score=session.get('score', 0))
-
-@app.route('/new_game')
-def new_game():
-    init_game_state()
-    return redirect(url_for('game'))
-
-@app.route('/add_char/<char>')
-def add_char(char):
-    if 'secret_word' not in session or 'to_display' not in session or 'tries' not in session:
-        init_game_state()
-        return redirect(url_for('game'))
-
-    char = char.upper()
-
-    if 'used_letters' not in session:
-        session['used_letters'] = []
-
-    if char in session.get('used_letters', []):
-        return redirect(url_for('game'))
-
-    session_used_letters = list(session.get('used_letters', []))
-    session_used_letters.append(char)
-    session['used_letters'] = session_used_letters
-
-    secret_word = session.get('secret_word', '')
-    to_display = list(session.get('to_display', []))
-    blanks = session.get('blanks', 0)
-    tries = session.get('tries', 6)
-
-    if char in secret_word:
-        for i in range(len(secret_word)):
-            if secret_word[i] == char:
-                to_display[i] = char
-                blanks -= 1
-
-        session['to_display'] = to_display
-        session['blanks'] = blanks
-
-        if "_" not in to_display or blanks <= 0:
-            return redirect(url_for('game_won_landing'))
-    else:
-        tries -= 1
-        session['tries'] = tries
-
-        if tries <= 0:
-            return redirect(url_for('game_lost_landing'))
-
-    return redirect(url_for('game'))
-
-@app.route('/game_lost')
-def game_lost_landing():
-    return render_template('game_lost.html')
-
-@app.route('/game_won')
-def game_won_landing():
-    if 'score' in session:
-        session['score'] += 1
-    else:
-        session['score'] = 1
-
-    return render_template('game_won.html')
-
-SONGS = [
-    {"artist": "Queen", "title": "Bohemian Rhapsody",
-     "lyrics": "Is this the real life? Is this just fantasy? Caught in a landslide, No escape from...",
-     "answer": "reality"},
-    {"artist": "Michael Jackson", "title": "Billie Jean",
-     "lyrics": "Billie Jean is not my lover. She's just a girl who claims that I am the one. But the kid is not my...",
-     "answer": "son"},
-    {"artist": "The Beatles", "title": "Hey Jude",
-     "lyrics": "Hey Jude, don't make it bad. Take a sad song and make it...",
-     "answer": "better"},
-    {"artist": "Adele", "title": "Rolling in the Deep",
-     "lyrics": "There's a fire starting in my heart, reaching a fever pitch and it's bringing me out the...",
-     "answer": "dark"},
-    {"artist": "Rick Astley", "title": "Never Gonna Give You Up",
-     "lyrics": "Never gonna give you up, never gonna let you down, never gonna run around and...",
-     "answer": "desert you"},
-]
-
-@app.route('/dftl')
-def dftl():
-    if 'dftl_score' not in session:
-        session['dftl_score'] = 0
-    return render_template('dftl.html')
-
-@app.route('/dftl/play')
-def dftl_play():
-    song = random.choice(SONGS)
-    session['current_song'] = song
-    return render_template('dftl_play.html', song=song)
-
-@app.route('/dftl/check', methods=['POST'])
-def dftl_check():
-    user_answer = request.form.get('answer', '').strip().lower()
-    current_song = session.get('current_song')
-
-    if not current_song:
-        return redirect(url_for('dftl'))
-
-    correct = user_answer == current_song['answer'].lower()
-
-    if correct:
-        session['dftl_score'] = session.get('dftl_score', 0) + 1
-        return render_template('dftl_correct.html',
-                               score=session['dftl_score'],
-                               song=current_song)
-    else:
-        return render_template('dftl_wrong.html',
-                               score=session['dftl_score'],
-                               song=current_song,
-                               user_answer=user_answer)
-
 
 # ... autres routes (Hangman, DFTL, etc.) ...
 
