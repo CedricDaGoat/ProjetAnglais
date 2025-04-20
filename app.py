@@ -24,8 +24,31 @@ def load_questions():
 
 def init_game_state(nbrjoueur=1):
     # Choix aléatoire du mot pour Hangman (réutilisé ailleurs)
-    word_set = ["PYTHON", "JAVASCRIPT", "HANGMAN", "PROGRAMMING", "DEVELOPER",
-                "FLASK", "INTERNET", "ORDINATEUR", "CLAVIER", "LOGICIEL"]
+    
+    word_set = [
+    "OFFICE", "MANAGER", "EMPLOYEE", "COLLEAGUE", "MEETING", "DEADLINE", "PROJECT", "GOAL", "OBJECTIVE", "TEAM",
+    "SUPERVISOR", "INTERN", "RESUME", "INTERVIEW", "PROMOTION", "SALARY", "WAGE", "CONTRACT", "AGREEMENT", "FREELANCE",
+    "CONSULTANT", "EXECUTIVE", "PRESENTATION", "REPORT", "SPREADSHEET", "COMPUTER", "KEYBOARD", "EMAIL", "CALENDAR", "SCHEDULE",
+    "PRODUCTIVITY", "PERFORMANCE", "EFFICIENCY", "DEADLINE", "TASK", "ASSIGNMENT", "RESPONSIBILITY", "LEADERSHIP", "STRATEGY", "PLANNING",
+    "BRAINSTORM", "WORKSHOP", "TRAINING", "COACHING", "NETWORKING", "NEGOTIATION", "CLIENT", "CUSTOMER", "SUPPORT", "SERVICE",
+    "SALES", "MARKETING", "ADVERTISING", "BRANDING", "FINANCE", "ACCOUNTING", "BUDGET", "INVOICE", "PAYMENT", "EXPENSES",
+    "PROFIT", "LOSS", "REVENUE", "ANALYTICS", "STATISTICS", "DATA", "RESEARCH", "DEVELOPMENT", "DESIGN", "PRODUCTION",
+    "ENGINEERING", "CODING", "PROGRAMMING", "SOFTWARE", "HARDWARE", "IT", "TECHNICAL", "TOOLS", "EQUIPMENT", "PRINTER",
+    "SCANNER", "NOTEBOOK", "DESK", "CHAIR", "CUBICLE", "CONFERENCE", "REMOTE", "HYBRID", "ONBOARDING", "OFFBOARDING",
+    "HUMAN", "RESOURCES", "HR", "RECRUITMENT", "HIRING", "FIRING", "DISCIPLINE", "FEEDBACK", "APPRAISAL", "REVIEW",
+    "OVERTIME", "SHIFT", "HOURS", "BREAK", "LUNCH", "COFFEE", "COMMUTE", "TRANSPORT", "LOCATION", "WORKSPACE",
+    "SECURITY", "ACCESS", "PASSWORD", "LOGIN", "VPN", "FIREWALL", "SERVER", "CLOUD", "STORAGE", "BACKUP",
+    "POLICY", "COMPLIANCE", "REGULATION", "LEGAL", "AUDIT", "RISK", "INSURANCE", "BENEFITS", "HEALTHCARE", "PENSION",
+    "MOTIVATION", "ENGAGEMENT", "CULTURE", "DIVERSITY", "INCLUSION", "COLLABORATION", "TEAMWORK", "COMMUNICATION", "CONFLICT", "RESOLUTION",
+    "ESCALATION", "SUPERVISION", "DELEGATION", "INITIATIVE", "OWNERSHIP", "DEADLINE", "PRIORITY", "MILESTONE", "TIMELINE", "WORKFLOW",
+    "TEMPLATE", "FORM", "DOCUMENT", "MEMO", "NOTICE", "BULLETIN", "ANNOUNCEMENT", "NEWSLETTER", "MANUAL", "PROCEDURE",
+    "POLICY", "GUIDELINES", "COMPLIANCE", "ETHICS", "INTEGRITY", "TRANSPARENCY", "ACCOUNTABILITY", "RESPECT", "COMMITMENT", "INNOVATION",
+    "ENTREPRENEUR", "STARTUP", "PITCH", "VENTURE", "CAPITAL", "INVESTOR", "STAKEHOLDER", "BOARD", "CEO", "FOUNDER",
+    "ASSISTANT", "ADMINISTRATOR", "ANALYST", "DESIGNER", "DEVELOPER", "TECHNICIAN", "SPECIALIST", "ADVISOR", "OPERATOR", "AGENT",
+    "PLANNER", "STRATEGIST", "ORGANIZER", "LIAISON", "COORDINATOR", "MENTOR", "TRAINEE", "PROBATION", "EVALUATION", "RESULT"
+]
+
+
 
     old_word = session.get('secret_word', '')
     new_word = old_word
@@ -167,12 +190,12 @@ def zip_filter(a, b):
 def utility_processor():
     def get_color_for_category(category):
         category_colors = {
-            "Histoire": "#e63946",
-            "Géographie": "#457b9d",
+            "History": "#e63946",
+            "Geography": "#457b9d",
             "Science": "#2a9d8f",
-            "Divertissement": "#f4a261",
-            "Art et Littérature": "#9d4edd",
-            "Sport et Loisirs": "#e5989b"
+            "Entertainment": "#f4a261",
+            "Arts and litterature": "#9d4edd",
+            "Sports": "#e5989b"
         }
         return category_colors.get(category, "#000000")
     return dict(get_color_for_category=get_color_for_category)

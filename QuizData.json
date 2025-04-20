@@ -1,247 +1,332 @@
 [
     {
+        "question": "Which year did the Battle of Hastings take place?",
+        "correct_answer": "1066",
+        "incorrect_answers": [
+            "1215",
+            "1415",
+            "1016"
+        ],
         "id": 1,
-        "category": "Histoire",
-        "question": "En quelle année la Révolution française a-t-elle commencé ?",
-        "correct_answer": "1789",
-        "incorrect_answers": ["1780", "1799", "1769"]
+        "category": "History"
     },
     {
+        "question": "Who was the British Prime Minister during most of World War II?",
+        "correct_answer": "Winston Churchill",
+        "incorrect_answers": [
+            "Neville Chamberlain",
+            "Clement Attlee",
+            "Anthony Eden"
+        ],
         "id": 2,
-        "category": "Histoire",
-        "question": "Qui était le premier empereur romain ?",
-        "correct_answer": "Auguste",
-        "incorrect_answers": ["Jules César", "Néron", "Caligula"]
+        "category": "History"
     },
     {
+        "question": "What major event happened in London in 1666?",
+        "correct_answer": "The Great Fire of London",
+        "incorrect_answers": [
+            "The Plague",
+            "The Blitz",
+            "The Industrial Revolution"
+        ],
         "id": 3,
-        "category": "Histoire",
-        "question": "Quelle était la capitale de l'Empire byzantin ?",
-        "correct_answer": "Constantinople",
-        "incorrect_answers": ["Rome", "Athènes", "Alexandrie"]
+        "category": "History"
     },
     {
+        "question": "When was the Magna Carta signed?",
+        "correct_answer": "1215",
+        "incorrect_answers": [
+            "1066",
+            "1492",
+            "1314"
+        ],
         "id": 4,
-        "category": "Histoire",
-        "question": "En quelle année Christophe Colomb a-t-il découvert l'Amérique ?",
-        "correct_answer": "1492",
-        "incorrect_answers": ["1485", "1500", "1498"]
+        "category": "History"
     },
     {
+        "question": "Which monarch had the longest reign before Queen Elizabeth II?",
+        "correct_answer": "Queen Victoria",
+        "incorrect_answers": [
+            "King George III",
+            "Henry VIII",
+            "Edward VII"
+        ],
         "id": 5,
-        "category": "Histoire",
-        "question": "Qui a été le premier président des États-Unis ?",
-        "correct_answer": "George Washington",
-        "incorrect_answers": ["Thomas Jefferson", "Benjamin Franklin", "John Adams"]
+        "category": "History"
     },
     {
+        "question": "Which conflict was known as 'The Troubles'?",
+        "correct_answer": "Northern Ireland conflict",
+        "incorrect_answers": [
+            "World War I",
+            "The Falklands War",
+            "Boer War"
+        ],
         "id": 6,
-        "category": "Géographie",
-        "question": "Quelle est la plus haute montagne du monde ?",
-        "correct_answer": "Mont Everest",
-        "incorrect_answers": ["K2", "Mont Blanc", "Kilimanjaro"]
+        "category": "History"
     },
     {
+        "question": "Which king was executed in 1649?",
+        "correct_answer": "Charles I",
+        "incorrect_answers": [
+            "James I",
+            "Edward VI",
+            "Richard III"
+        ],
         "id": 7,
-        "category": "Géographie",
-        "question": "Quel est le plus grand océan du monde ?",
-        "correct_answer": "Océan Pacifique",
-        "incorrect_answers": ["Océan Atlantique", "Océan Indien", "Océan Arctique"]
+        "category": "History"
     },
     {
+        "question": "Which British general defeated Napoleon at Waterloo?",
+        "correct_answer": "Duke of Wellington",
+        "incorrect_answers": [
+            "Horatio Nelson",
+            "Lord Kitchener",
+            "Montgomery"
+        ],
         "id": 8,
-        "category": "Géographie",
-        "question": "Dans quel pays se trouve la ville de Marrakech ?",
-        "correct_answer": "Maroc",
-        "incorrect_answers": ["Algérie", "Tunisie", "Égypte"]
+        "category": "History"
     },
     {
+        "question": "In what century did the War of the Roses take place?",
+        "correct_answer": "15th century",
+        "incorrect_answers": [
+            "14th",
+            "16th",
+            "17th"
+        ],
         "id": 9,
-        "category": "Géographie",
-        "question": "Quelle est la capitale du Japon ?",
-        "correct_answer": "Tokyo",
-        "incorrect_answers": ["Osaka", "Kyoto", "Hiroshima"]
+        "category": "History"
     },
     {
+        "question": "Who was Queen Elizabeth I's mother?",
+        "correct_answer": "Anne Boleyn",
+        "incorrect_answers": [
+            "Catherine of Aragon",
+            "Jane Seymour",
+            "Mary Boleyn"
+        ],
         "id": 10,
-        "category": "Géographie",
-        "question": "Quel est le plus grand désert du monde ?",
-        "correct_answer": "Antarctique",
-        "incorrect_answers": ["Sahara", "Gobi", "Atacama"]
+        "category": "History"
     },
     {
+        "question": "What is the capital city of Scotland?",
+        "correct_answer": "Edinburgh",
+        "incorrect_answers": [
+            "Glasgow",
+            "Aberdeen",
+            "Inverness"
+        ],
         "id": 11,
-        "category": "Science",
-        "question": "Quelle est la formule chimique de l'eau ?",
-        "correct_answer": "H2O",
-        "incorrect_answers": ["CO2", "O2", "H2SO4"]
+        "category": "Geography"
     },
     {
+        "question": "Which river flows through London?",
+        "correct_answer": "The Thames",
+        "incorrect_answers": [
+            "The Severn",
+            "The Clyde",
+            "The Mersey"
+        ],
         "id": 12,
-        "category": "Science",
-        "question": "Quelle est la planète la plus proche du Soleil ?",
-        "correct_answer": "Mercure",
-        "incorrect_answers": ["Vénus", "Mars", "Jupiter"]
+        "category": "Geography"
     },
     {
+        "question": "Which UK country is known for Snowdonia National Park?",
+        "correct_answer": "Wales",
+        "incorrect_answers": [
+            "Scotland",
+            "England",
+            "Northern Ireland"
+        ],
         "id": 13,
-        "category": "Science",
-        "question": "Qui a découvert la pénicilline ?",
-        "correct_answer": "Alexander Fleming",
-        "incorrect_answers": ["Louis Pasteur", "Marie Curie", "Robert Koch"]
+        "category": "Geography"
     },
     {
+        "question": "Which English county is Stonehenge located in?",
+        "correct_answer": "Wiltshire",
+        "incorrect_answers": [
+            "Somerset",
+            "Devon",
+            "Kent"
+        ],
         "id": 14,
-        "category": "Science",
-        "question": "Quel est l'élément chimique le plus abondant dans l'Univers ?",
-        "correct_answer": "Hydrogène",
-        "incorrect_answers": ["Hélium", "Oxygène", "Carbone"]
+        "category": "Geography"
     },
     {
+        "question": "What is the largest lake in the UK?",
+        "correct_answer": "Lough Neagh",
+        "incorrect_answers": [
+            "Loch Ness",
+            "Windermere",
+            "Loch Lomond"
+        ],
         "id": 15,
-        "category": "Science",
-        "question": "Quelle est la vitesse de la lumière en km/s ?",
-        "correct_answer": "299 792",
-        "incorrect_answers": ["199 792", "399 792", "499 792"]
+        "category": "Geography"
     },
     {
+        "question": "Which is the tallest mountain in the UK?",
+        "correct_answer": "Ben Nevis",
+        "incorrect_answers": [
+            "Snowdon",
+            "Scafell Pike",
+            "Helvellyn"
+        ],
         "id": 16,
-        "category": "Divertissement",
-        "question": "Quel acteur joue Iron Man dans l'univers Marvel ?",
-        "correct_answer": "Robert Downey Jr.",
-        "incorrect_answers": ["Chris Evans", "Chris Hemsworth", "Mark Ruffalo"]
+        "category": "Geography"
     },
     {
+        "question": "What island lies between England and Ireland?",
+        "correct_answer": "Isle of Man",
+        "incorrect_answers": [
+            "Isle of Wight",
+            "Anglesey",
+            "Skye"
+        ],
         "id": 17,
-        "category": "Divertissement",
-        "question": "Qui a réalisé le film Inception ?",
-        "correct_answer": "Christopher Nolan",
-        "incorrect_answers": ["Steven Spielberg", "Martin Scorsese", "Quentin Tarantino"]
+        "category": "Geography"
     },
     {
+        "question": "Which UK city is famous for its shipbuilding and the Titanic?",
+        "correct_answer": "Belfast",
+        "incorrect_answers": [
+            "Liverpool",
+            "Glasgow",
+            "Bristol"
+        ],
         "id": 18,
-        "category": "Divertissement",
-        "question": "Quel groupe a chanté 'Bohemian Rhapsody' ?",
-        "correct_answer": "Queen",
-        "incorrect_answers": ["The Beatles", "Led Zeppelin", "Pink Floyd"]
+        "category": "Geography"
     },
     {
+        "question": "Which national park is located in northern England?",
+        "correct_answer": "Lake District",
+        "incorrect_answers": [
+            "Cairngorms",
+            "Brecon Beacons",
+            "Exmoor"
+        ],
         "id": 19,
-        "category": "Divertissement",
-        "question": "Dans quelle ville se déroule la série Friends ?",
-        "correct_answer": "New York",
-        "incorrect_answers": ["Los Angeles", "Chicago", "Boston"]
+        "category": "Geography"
     },
     {
+        "question": "What is the southernmost point of mainland UK?",
+        "correct_answer": "Lizard Point",
+        "incorrect_answers": [
+            "Land\u2019s End",
+            "Dover",
+            "Brighton"
+        ],
         "id": 20,
-        "category": "Divertissement",
-        "question": "Quel est le nom du sorcier principal dans Harry Potter ?",
-        "correct_answer": "Harry Potter",
-        "incorrect_answers": ["Ron Weasley", "Hermione Granger", "Drago Malefoy"]
+        "category": "Geography"
     },
     {
+        "question": "Who discovered penicillin?",
+        "correct_answer": "Alexander Fleming",
+        "incorrect_answers": [
+            "Isaac Newton",
+            "Charles Darwin",
+            "Stephen Hawking"
+        ],
         "id": 21,
-        "category": "Art et Littérature",
-        "question": "Qui a peint La Joconde ?",
-        "correct_answer": "Léonard de Vinci",
-        "incorrect_answers": ["Michel-Ange", "Raphaël", "Vincent van Gogh"]
+        "category": "Science"
     },
     {
+        "question": "Which British scientist proposed the theory of evolution?",
+        "correct_answer": "Charles Darwin",
+        "incorrect_answers": [
+            "Isaac Newton",
+            "Alexander Fleming",
+            "Rosalind Franklin"
+        ],
         "id": 22,
-        "category": "Art et Littérature",
-        "question": "Qui a écrit 'Les Misérables' ?",
-        "correct_answer": "Victor Hugo",
-        "incorrect_answers": ["Émile Zola", "Gustave Flaubert", "Albert Camus"]
+        "category": "Science"
     },
     {
+        "question": "What is Stephen Hawking known for?",
+        "correct_answer": "Black holes and theoretical physics",
+        "incorrect_answers": [
+            "Penicillin discovery",
+            "Evolution theory",
+            "Electricity invention"
+        ],
         "id": 23,
-        "category": "Art et Littérature",
-        "question": "Dans quel musée se trouve la Joconde ?",
-        "correct_answer": "Le Louvre",
-        "incorrect_answers": ["Musée d'Orsay", "British Museum", "MoMA"]
+        "category": "Science"
     },
     {
+        "question": "Which physicist formulated the laws of motion?",
+        "correct_answer": "Isaac Newton",
+        "incorrect_answers": [
+            "James Clerk Maxwell",
+            "Michael Faraday",
+            "Stephen Hawking"
+        ],
         "id": 24,
-        "category": "Art et Littérature",
-        "question": "Qui a écrit 'Roméo et Juliette' ?",
-        "correct_answer": "William Shakespeare",
-        "incorrect_answers": ["Molière", "Oscar Wilde", "Charles Dickens"]
+        "category": "Science"
     },
     {
+        "question": "What is the chemical symbol for tin?",
+        "correct_answer": "Sn",
+        "incorrect_answers": [
+            "Tn",
+            "Ti",
+            "Si"
+        ],
         "id": 25,
-        "category": "Art et Littérature",
-        "question": "Quel mouvement artistique Van Gogh représente-t-il ?",
-        "correct_answer": "Post-impressionnisme",
-        "incorrect_answers": ["Impressionnisme", "Cubisme", "Surréalisme"]
+        "category": "Science"
     },
     {
+        "question": "Which British woman contributed to the discovery of DNA?",
+        "correct_answer": "Rosalind Franklin",
+        "incorrect_answers": [
+            "Mary Anning",
+            "Ada Lovelace",
+            "Dorothy Hodgkin"
+        ],
         "id": 26,
-        "category": "Sport et Loisirs",
-        "question": "Dans quel sport excellent les All Blacks ?",
-        "correct_answer": "Rugby",
-        "incorrect_answers": ["Football", "Cricket", "Hockey"]
+        "category": "Science"
     },
     {
+        "question": "What gas is essential for respiration?",
+        "correct_answer": "Oxygen",
+        "incorrect_answers": [
+            "Hydrogen",
+            "Carbon dioxide",
+            "Nitrogen"
+        ],
         "id": 27,
-        "category": "Sport et Loisirs",
-        "question": "Combien de joueurs y a-t-il dans une équipe de football sur le terrain ?",
-        "correct_answer": "11",
-        "incorrect_answers": ["10", "12", "9"]
+        "category": "Science"
     },
     {
+        "question": "What part of the body does the cerebrum belong to?",
+        "correct_answer": "Brain",
+        "incorrect_answers": [
+            "Heart",
+            "Lungs",
+            "Liver"
+        ],
         "id": 28,
-        "category": "Sport et Loisirs",
-        "question": "Quel pays a remporté le plus de Coupes du Monde de football ?",
-        "correct_answer": "Brésil",
-        "incorrect_answers": ["Allemagne", "Italie", "Argentine"]
+        "category": "Science"
     },
     {
+        "question": "Which British scientist worked on electromagnetism?",
+        "correct_answer": "Michael Faraday",
+        "incorrect_answers": [
+            "Stephen Hawking",
+            "Isaac Newton",
+            "Robert Hooke"
+        ],
         "id": 29,
-        "category": "Sport et Loisirs",
-        "question": "Dans quel sport utilise-t-on un volant ?",
-        "correct_answer": "Badminton",
-        "incorrect_answers": ["Tennis", "Squash", "Ping-pong"]
+        "category": "Science"
     },
     {
+        "question": "What is H2O?",
+        "correct_answer": "Water",
+        "incorrect_answers": [
+            "Oxygen",
+            "Hydrogen",
+            "Salt"
+        ],
         "id": 30,
-        "category": "Sport et Loisirs",
-        "question": "Quelle est la durée d'un match de basketball en NBA ?",
-        "correct_answer": "48 minutes",
-        "incorrect_answers": ["40 minutes", "45 minutes", "50 minutes"]
-    },
-    {
-        "id": 31,
-        "category": "Histoire",
-        "question": "En quelle année est tombé le mur de Berlin ?",
-        "correct_answer": "1989",
-        "incorrect_answers": ["1991", "1988", "1990"]
-    },
-    {
-        "id": 32,
-        "category": "Histoire",
-        "question": "Qui était le roi Soleil ?",
-        "correct_answer": "Louis XIV",
-        "incorrect_answers": ["Louis XV", "Louis XVI", "Louis XIII"]
-    },
-    {
-        "id": 33,
-        "category": "Géographie",
-        "question": "Quel est le plus long fleuve de France ?",
-        "correct_answer": "La Loire",
-        "incorrect_answers": ["Le Rhône", "La Seine", "La Garonne"]
-    },
-    {
-        "id": 34,
-        "category": "Géographie",
-        "question": "Quelle est la capitale de l'Australie ?",
-        "correct_answer": "Canberra",
-        "incorrect_answers": ["Sydney", "Melbourne", "Brisbane"]
-    },
-    {
-        "id": 35,
-        "category": "Science",
-        "question": "Quel est le symbole chimique de l'or ?",
-        "correct_answer": "Au",
-        "incorrect_answers": ["Ag", "Fe", "Cu"]
+        "category": "Science"
     }
 ]
