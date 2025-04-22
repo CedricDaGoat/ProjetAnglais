@@ -4,17 +4,19 @@ import random
 import functions
 import definition
 from definition import get_definition
+from words import word_set
+from songs import SONGS
 
 app = Flask(__name__)
 app.secret_key = 'votre_clé_secrète_ici'
 
 CATEGORIES = [
-    "Histoire",
-    "Géographie",
+    "History",
+    "Geography",
     "Science",
-    "Divertissement",
-    "Art et Littérature",
-    "Sport et Loisirs"
+    "Entertainment",
+    "Arts and litterature",
+    "Sports"
 ]
 
 def load_questions():
@@ -24,31 +26,6 @@ def load_questions():
 
 def init_game_state(nbrjoueur=1):
     # Choix aléatoire du mot pour Hangman (réutilisé ailleurs)
-    
-    word_set = [
-    "OFFICE", "MANAGER", "EMPLOYEE", "COLLEAGUE", "MEETING", "DEADLINE", "PROJECT", "GOAL", "OBJECTIVE", "TEAM",
-    "SUPERVISOR", "INTERN", "RESUME", "INTERVIEW", "PROMOTION", "SALARY", "WAGE", "CONTRACT", "AGREEMENT", "FREELANCE",
-    "CONSULTANT", "EXECUTIVE", "PRESENTATION", "REPORT", "SPREADSHEET", "COMPUTER", "KEYBOARD", "EMAIL", "CALENDAR", "SCHEDULE",
-    "PRODUCTIVITY", "PERFORMANCE", "EFFICIENCY", "DEADLINE", "TASK", "ASSIGNMENT", "RESPONSIBILITY", "LEADERSHIP", "STRATEGY", "PLANNING",
-    "BRAINSTORM", "WORKSHOP", "TRAINING", "COACHING", "NETWORKING", "NEGOTIATION", "CLIENT", "CUSTOMER", "SUPPORT", "SERVICE",
-    "SALES", "MARKETING", "ADVERTISING", "BRANDING", "FINANCE", "ACCOUNTING", "BUDGET", "INVOICE", "PAYMENT", "EXPENSES",
-    "PROFIT", "LOSS", "REVENUE", "ANALYTICS", "STATISTICS", "DATA", "RESEARCH", "DEVELOPMENT", "DESIGN", "PRODUCTION",
-    "ENGINEERING", "CODING", "PROGRAMMING", "SOFTWARE", "HARDWARE", "IT", "TECHNICAL", "TOOLS", "EQUIPMENT", "PRINTER",
-    "SCANNER", "NOTEBOOK", "DESK", "CHAIR", "CUBICLE", "CONFERENCE", "REMOTE", "HYBRID", "ONBOARDING", "OFFBOARDING",
-    "HUMAN", "RESOURCES", "HR", "RECRUITMENT", "HIRING", "FIRING", "DISCIPLINE", "FEEDBACK", "APPRAISAL", "REVIEW",
-    "OVERTIME", "SHIFT", "HOURS", "BREAK", "LUNCH", "COFFEE", "COMMUTE", "TRANSPORT", "LOCATION", "WORKSPACE",
-    "SECURITY", "ACCESS", "PASSWORD", "LOGIN", "VPN", "FIREWALL", "SERVER", "CLOUD", "STORAGE", "BACKUP",
-    "POLICY", "COMPLIANCE", "REGULATION", "LEGAL", "AUDIT", "RISK", "INSURANCE", "BENEFITS", "HEALTHCARE", "PENSION",
-    "MOTIVATION", "ENGAGEMENT", "CULTURE", "DIVERSITY", "INCLUSION", "COLLABORATION", "TEAMWORK", "COMMUNICATION", "CONFLICT", "RESOLUTION",
-    "ESCALATION", "SUPERVISION", "DELEGATION", "INITIATIVE", "OWNERSHIP", "DEADLINE", "PRIORITY", "MILESTONE", "TIMELINE", "WORKFLOW",
-    "TEMPLATE", "FORM", "DOCUMENT", "MEMO", "NOTICE", "BULLETIN", "ANNOUNCEMENT", "NEWSLETTER", "MANUAL", "PROCEDURE",
-    "POLICY", "GUIDELINES", "COMPLIANCE", "ETHICS", "INTEGRITY", "TRANSPARENCY", "ACCOUNTABILITY", "RESPECT", "COMMITMENT", "INNOVATION",
-    "ENTREPRENEUR", "STARTUP", "PITCH", "VENTURE", "CAPITAL", "INVESTOR", "STAKEHOLDER", "BOARD", "CEO", "FOUNDER",
-    "ASSISTANT", "ADMINISTRATOR", "ANALYST", "DESIGNER", "DEVELOPER", "TECHNICIAN", "SPECIALIST", "ADVISOR", "OPERATOR", "AGENT",
-    "PLANNER", "STRATEGIST", "ORGANIZER", "LIAISON", "COORDINATOR", "MENTOR", "TRAINEE", "PROBATION", "EVALUATION", "RESULT"
-]
-
-
 
     old_word = session.get('secret_word', '')
     new_word = old_word
@@ -61,7 +38,7 @@ def init_game_state(nbrjoueur=1):
 
     session['secret_word'] = new_word
     session['to_display'] = ["_" for _ in new_word]
-    session['tries'] = 6
+    session['tries'] = 9
     session['used_letters'] = []
     session['blanks'] = len(new_word)
 
@@ -249,7 +226,7 @@ def add_char(char):
     secret_word = session.get('secret_word', '')
     to_display = list(session.get('to_display', []))
     blanks = session.get('blanks', 0)
-    tries = session.get('tries', 6)
+    tries = session.get('tries', 9)
 
     if char in secret_word:
         for i in range(len(secret_word)):
@@ -284,35 +261,35 @@ def game_won_landing():
 
     return render_template('game_won.html')
 
-SONGS = [
-    {"artist": "Queen", "title": "Bohemian Rhapsody",
-     "lyrics": "Is this the real life? Is this just fantasy? Caught in a landslide, No escape from...",
-     "answer": "reality"},
-    {"artist": "Michael Jackson", "title": "Billie Jean",
-     "lyrics": "Billie Jean is not my lover. She's just a girl who claims that I am the one. But the kid is not my...",
-     "answer": "son"},
-    {"artist": "The Beatles", "title": "Hey Jude",
-     "lyrics": "Hey Jude, don't make it bad. Take a sad song and make it...",
-     "answer": "better"},
-    {"artist": "Adele", "title": "Rolling in the Deep",
-     "lyrics": "There's a fire starting in my heart, reaching a fever pitch and it's bringing me out the...",
-     "answer": "dark"},
-    {"artist": "Rick Astley", "title": "Never Gonna Give You Up",
-     "lyrics": "Never gonna give you up, never gonna let you down, never gonna run around and...",
-     "answer": "desert you"},
-]
-
 @app.route('/dftl')
 def dftl():
-    if 'dftl_score' not in session:
-        session['dftl_score'] = 0
+    session['dftl_score'] = 0
+    session['dftl_played'] = []  # Réinitialise la liste des chansons jouées
     return render_template('dftl.html')
+
 
 @app.route('/dftl/play')
 def dftl_play():
-    song = random.choice(SONGS)
+    if 'dftl_played' not in session:
+        session['dftl_played'] = []
+
+    # Filtrer les chansons déjà jouées
+    remaining_songs = [song for song in SONGS if song['answer'] not in session['dftl_played']]
+
+    # Si toutes les chansons ont été jouées, on réinitialise ou affiche un message
+    if not remaining_songs:
+        session['dftl_played'] = []  # Ou rediriger vers un écran de fin
+        return render_template('dftl_complete.html')  # À créer
+
+    # Choisir une chanson parmi celles restantes
+    song = random.choice(remaining_songs)
     session['current_song'] = song
+
+    # Ajouter à la liste des chansons déjà jouées
+    session['dftl_played'].append(song['answer'])
+
     return render_template('dftl_play.html', song=song)
+
 
 @app.route('/dftl/check', methods=['POST'])
 def dftl_check():
