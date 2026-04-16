@@ -1,19 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Game Won</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="text-center">
+<body class="text-center bg-light">
     <div class="container mt-5">
-        <h1 class="text-success mb-4">Congratulations!</h1>
-        <p class="lead">You guessed the word: <strong>{{ session.get('secret_word', 'unknown') }}</strong></p>
-        <p>Your current score: <span class="badge badge-primary">{{ session.get('score', 0) }}</span></p>
-        
-        <div class="mt-4">
-            <a href="/new_game" class="btn btn-warning ml-2">New Game</a>
-            <a href="/" class="btn btn-outline-secondary">Home</a>
+        <div class="card shadow mx-auto" style="max-width: 500px;">
+            <div class="card-header bg-success text-white">
+                <h1 class="mb-0"><i class="fas fa-trophy me-2"></i>Congratulations!</h1>
+            </div>
+            <div class="card-body">
+                <p class="lead">You guessed the word: <strong>{{ session.get('secret_word', 'unknown') }}</strong></p>
+                <p>Your current score: <span class="badge bg-primary fs-6">{{ session.get('score', 0) }}</span></p>
+                <div class="mt-4">
+                    <a href="/new_game" class="btn btn-warning me-2"><i class="fas fa-redo me-1"></i>New Game</a>
+                    <a href="/" class="btn btn-outline-secondary"><i class="fas fa-home me-1"></i>Home</a>
+                </div>
+            </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

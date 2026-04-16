@@ -30,7 +30,7 @@ SONGS = [
     {"artist": "Eminem", "title": "Lose Yourself",
      "lyrics": "His palms are sweaty, knees weak, arms are heavy. There's vomit on his sweater already, ...",
      "answer": "mom's spaghetti"},
-     
+
     {"artist": "Toto", "title": "Africa",
      "lyrics": "I hear the drums echoing tonight, but she hears only whispers of ...",
      "answer": "some quiet conversation"},
@@ -50,4 +50,48 @@ SONGS = [
     {"artist": "Elton John", "title": "Rocket Man",
      "lyrics": "And I think it's gonna be a long long time 'til ...",
      "answer": "touchdown brings me 'round again to find"},
+
+    {"artist": "A-ha", "title": "Take On Me",
+     "lyrics": "Take on me, (take on me) take me on, (take on me) I'll ...",
+     "answer": "be gone in a day or two"},
+
+    {"artist": "Whitney Houston", "title": "I Will Always Love You",
+     "lyrics": "And I will always love you, I will always love you. You, ...",
+     "answer": "my darling you"},
+
+    {"artist": "Eagles", "title": "Hotel California",
+     "lyrics": "Welcome to the Hotel California, such a lovely place, such a lovely face. Plenty of room at the ...",
+     "answer": "hotel california"},
+
+    {"artist": "The Police", "title": "Every Breath You Take",
+     "lyrics": "Every breath you take, every move you make, every bond you break, every step you take, ...",
+     "answer": "i'll be watching you"},
+
+    {"artist": "Madonna", "title": "Like a Prayer",
+     "lyrics": "Life is a mystery, everyone must stand alone. I hear you call my name and it feels like ...",
+     "answer": "home"},
+
+    {"artist": "Coldplay", "title": "Yellow",
+     "lyrics": "Look at the stars, look how they shine for you, and everything you do, ...",
+     "answer": "yeah they were all yellow"},
+
+    {"artist": "Ed Sheeran", "title": "Shape of You",
+     "lyrics": "The club isn't the best place to find a lover, so the bar is where I ...",
+     "answer": "go"},
+
+    {"artist": "Imagine Dragons", "title": "Believer",
+     "lyrics": "First things first, I'ma say all the words inside my head. I'm fired up and tired of the way that ...",
+     "answer": "things have been"},
+
+    {"artist": "Dua Lipa", "title": "Levitating",
+     "lyrics": "If you wanna run away with me, I know a galaxy and I can take you for ...",
+     "answer": "a ride"},
+
+    {"artist": "The Weeknd", "title": "Blinding Lights",
+     "lyrics": "I've been tryna call, I've been on my own for long enough. Maybe you can show me how to love, ...",
+     "answer": "maybe"},
+
+    {"artist": "Pharrell Williams", "title": "Happy",
+     "lyrics": "It might seem crazy what I'm about to say. Sunshine she's here, ...",
+     "answer": "you can take a break"},
 ]

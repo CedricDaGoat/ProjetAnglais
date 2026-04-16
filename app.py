@@ -1,14 +1,14 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
 import random
-import functions
 import definition
 from definition import get_definition
 from words import word_set
 from songs import SONGS
 
 app = Flask(__name__)
-app.secret_key = 'votre_clé_secrète_ici'
+app.secret_key = os.environ.get('SECRET_KEY', 'change-me-in-production')
 
 CATEGORIES = [
     "History",
@@ -50,7 +50,8 @@ def init_game_state(nbrjoueur=1):
         'questions': load_questions(),
         'questions_posees': [],
         'question_actuelle': None,
-        'partie_commencee': False
+        'partie_commencee': False,
+        'question_counter': 0
     }
 
     # Initialiser le score maximum si nécessaire
@@ -98,6 +99,7 @@ def index():
                            joueur_actuel=game_state['joueur_actuel'],
                            categories=CATEGORIES,
                            partie_commencee=game_state['partie_commencee'],
+                           question_counter=game_state.get('question_counter', 0),
                            max_score=session.get('max_score', 0))
 
 
@@ -118,6 +120,7 @@ def question():
     question = random.choice(questions_disponibles)
     game_state['question_actuelle'] = question
     game_state['questions_posees'].append(question['id'])
+    game_state['question_counter'] = game_state.get('question_counter', 0) + 1
     session['game_state'] = game_state
 
     reponses = [question['correct_answer']] + question['incorrect_answers']
@@ -134,6 +137,7 @@ def question():
                                'question': question['question'],
                                'reponses': reponses
                            },
+                           question_counter=game_state['question_counter'],
                            max_score=session.get('max_score', 0))
 
 
@@ -195,9 +199,14 @@ def game():
     if 'secret_word' not in session or 'to_display' not in session or 'tries' not in session:
         init_game_state()
 
+    tries = session['tries']
+    # Map tries (9→0) to image index (0→6)
+    hangman_img = max(0, min(6, 9 - tries))
+
     return render_template('game.html',
                            word=session['to_display'],
-                           tries=session['tries'],
+                           tries=tries,
+                           hangman_img=hangman_img,
                            score=session.get('score', 0))
 
 @app.route('/new_game')

@@ -38,7 +38,7 @@
 
         <!-- Hangman image based on remaining tries -->
         <div class="mb-3">
-            <img src="{{ url_for('static', filename='hangman_' + tries|string + '.png') }}" alt="Hangman" class="hangman-image">
+            <img src="{{ url_for('static', filename='hangman' + hangman_img|string + '.png') }}" alt="Hangman" class="hangman-image">
             <p class="mt-2">Remaining attempts: <strong>{{ tries }}</strong></p>
         </div>
 
